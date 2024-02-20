@@ -4,23 +4,23 @@ const nodemailer=require('nodemailer')
 
 
 router.post('/send-email', (req, res) => {
-    const { to, subject, message,service } = req.body;
-    console.log(`to:${to},subject:${subject},message:${message},service:${service}`)
+    const { to, subject, message } = req.body;
+    console.log(`to:${to},subject:${subject},message:${message}`)
 
 
 
   
-    function getTransporter(service) {
+    function getTransporter(to) {
         let transporterConfig;
 
      
                 transporterConfig = {
-                    host: 'smtp'+service,
+                    host: 'smtp.gmail.com',
                     port: 587,
                     secure: false,
                     auth: {
-                        user: 'zhanik.planet1@gmail.com',
-                        pass: 'frvq ruyt wfqn yimo'
+                        user: 'farekeu@gmail.com',
+                        pass: 'diph rcvy lcvk qudk'
                     }
                 };
         
@@ -29,10 +29,10 @@ router.post('/send-email', (req, res) => {
         return nodemailer.createTransport(transporterConfig);
     }
 
-    const transporter = getTransporter(service);
+    const transporter = getTransporter(to);
 
     const mailOptions = {
-        from: 'zhanik.planet1@gmail.com',
+        from: 'farekeu@gmail.com',
         to: to,
         subject: subject,
         message: message

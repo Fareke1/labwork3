@@ -4,7 +4,6 @@ const cancelSendBtn = document.getElementById('cancelSendBtn');
 const to = document.getElementById('to');
 const subject = document.getElementById('subject');
 const message = document.getElementById('message');
-const service = document.getElementById('form-select');
 
 
 openDialogBtn.addEventListener('click', () => {
@@ -19,17 +18,17 @@ cancelSendBtn.addEventListener('click', () => {
 
 sendEmailForm.addEventListener('submit', async (event) => {
   event.preventDefault();
- await Post(to.value,subject.value,message.value,service.value)
+ await Post(to.value,subject.value,message.value)
 
 })
 
-async function Post(to, subject, message, service) {
+async function Post(to, subject, message) {
     fetch('http://localhost:3000/api/send-email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ to, subject, message, service }),
+      body: JSON.stringify({ to, subject, message}),
     })
       .then(response => response.json())
       .then(data => {
